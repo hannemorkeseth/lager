@@ -1,0 +1,19 @@
+.list-item-container {
+  display: flex;
+  align-items: center;
+}
+
+.text-field {
+  border: thin solid black;
+  border-radius: 5px;
+  width: 20%;
+}
+
+.number {
+  border: thin solid black;
+  border-radius: 1px;
+}
+
+.btn {
+  height: 50%;
+}
