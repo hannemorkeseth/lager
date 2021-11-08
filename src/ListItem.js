@@ -7,7 +7,7 @@ function ListItem(props) {
       <button className="btn" onClick={() => {props.handlePlusClick(props.vare.id)}}>+</button>
       <p className="number">{props.vare.antall}</p>
       <button className="btn" onClick ={() => {props.handleMinusClick(props.vare.id)}}>-</button>
-      <button className="btn" onClick = {() => {props.handleDelete(props.vare.id)}} >Delete</button>
+      <button className="delete-btn" onClick = {() => {props.handleDelete(props.vare.id)}} >Delete</button>
     </div>
   )
 }
