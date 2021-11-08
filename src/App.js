@@ -107,10 +107,11 @@ class App extends React.Component {
       handleMinusClick={this.handleMinusClick}
       handleDelete={this.handleDelete} />)
     return (
-      <div>
+      <div className="app">
+        <h1 className="overskrift">Matvarelager Ullerøy</h1>
         {varer}
         <InputField value={this.state.inputvalue} handleInputChange={this.handleInputChange} addItem={this.addItem}/>
-        <button onClick={this.saveStateToLocalStorage}>Lagre</button>
+        <button onClick={this.saveStateToLocalStorage} className="lagre">Lagre</button>
       </div>
     )
   }

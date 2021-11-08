@@ -17,9 +17,9 @@ class InputField extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="input-container">
         <input type="text" className="text-field" placeholder="Vare" value={this.props.value} onChange={this.handleChange}/>
-        <button onClick={this.handleClick}>Legg til</button>
+        <button onClick={this.handleClick} className="input-btn">Legg til</button>
       </div>
     )}
 }
