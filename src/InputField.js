@@ -19,7 +19,7 @@ class InputField extends React.Component {
     return (
       <div className="input-container">
         <input type="text" className="text-field" placeholder="Vare" value={this.props.value} onChange={this.handleChange}/>
-        <button onClick={this.handleClick} className="input-btn">Legg til</button>
+        <button onClick={this.handleClick} className="input-btn" style={{backgroundColor: this.props.buttonColor}}>Legg til</button>
       </div>
     )}
 }

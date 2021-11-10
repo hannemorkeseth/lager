@@ -11,9 +11,9 @@ class App extends React.Component {
   }
 
   render() {
-    const varelister = this.state.lister.map(liste => <List key={liste.id} tittel={liste.tittel} saveState={liste.state} />)
+    const varelister = this.state.lister.map(liste => <List key={liste.id} tittel={liste.tittel} saveState={liste.state} color={liste.color} buttonColor={liste.buttonColor} />)
     return (
-      <div>
+      <div className="app">
         {varelister}
       </div>
     )

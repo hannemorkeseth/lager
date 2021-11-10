@@ -103,13 +103,14 @@ class List extends React.Component {
       vare={vare}
       handlePlusClick={this.handlePlusClick}
       handleMinusClick={this.handleMinusClick}
-      handleDelete={this.handleDelete} />)
+      handleDelete={this.handleDelete}
+      buttonColor={this.props.buttonColor} />)
     return (
-      <div className="list">
+      <div className="list" style={{backgroundColor: this.props.color}}>
         <h1 className="overskrift">{this.props.tittel}</h1>
         {varer}
-        <InputField value={this.state.inputvalue} handleInputChange={this.handleInputChange} addItem={this.addItem}/>
-        <button onClick={this.saveStateToLocalStorage} className="lagre">Lagre</button>
+        <InputField value={this.state.inputvalue} handleInputChange={this.handleInputChange} addItem={this.addItem} buttonColor={this.props.buttonColor}/>
+        <button onClick={this.saveStateToLocalStorage} className="lagre" style={{backgroundColor: this.props.buttonColor}}>Lagre</button>
       </div>
     )
   }
