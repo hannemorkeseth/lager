@@ -18,8 +18,10 @@ class List extends React.Component {
     this.addItem = this.addItem.bind(this)
   }
 
-  saveStateToLocalStorage() {
+  saveStateToLocalStorage(event) {
     localStorage.setItem(this.props.saveState, JSON.stringify(this.state.data))
+    const tittel = this.props.tittel
+    alert("Lagret liste: " + tittel)
   }
 
   getStateFromLocalStorage() {
