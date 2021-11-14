@@ -7,7 +7,8 @@ class List extends React.Component {
     super()
     this.state = {
       data: [],
-      inputvalue: ''
+      inputvalue: '',
+      loading: false
     }
     this.saveStateToLocalStorage = this.saveStateToLocalStorage.bind(this)
     this.getStateFromLocalStorage = this.getStateFromLocalStorage.bind(this)
@@ -29,13 +30,15 @@ class List extends React.Component {
       const data = localStorage.getItem(this.props.saveState)
       if (data !== null) {
         return {
-          data: JSON.parse(data)
+          data: JSON.parse(data),
+          loading: false
         }
       }
     })
   }
 
   componentDidMount() {
+    this.setState({loading: true})
     this.getStateFromLocalStorage()
   }
 
@@ -107,9 +110,11 @@ class List extends React.Component {
       handleMinusClick={this.handleMinusClick}
       handleDelete={this.handleDelete}
       buttonColor={this.props.buttonColor} />)
+      const loading = this.state.loading ? "Loading..." : null
     return (
       <div className="list" style={{backgroundColor: this.props.color}}>
         <h1 className="overskrift">{this.props.tittel}</h1>
+        {loading}
         {varer}
         <InputField value={this.state.inputvalue} handleInputChange={this.handleInputChange} addItem={this.addItem} buttonColor={this.props.buttonColor}/>
         <button onClick={this.saveStateToLocalStorage} className="lagre" style={{backgroundColor: this.props.buttonColor}}>Lagre</button>
