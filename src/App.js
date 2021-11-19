@@ -1,23 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import lister from './lister'
 import List from './List'
 
-class App extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      lister
-    }
-  }
+function App() {
+ 
+  const [lister, setLister] = useState({lister});
 
-  render() {
-    const varelister = this.state.lister.map(liste => <List key={liste.id} tittel={liste.tittel} saveState={liste.state} color={liste.color} buttonColor={liste.buttonColor} />)
-    return (
-      <div className="app">
-        {varelister}
-      </div>
-    )
-  }
+  const varelister = lister.map(liste => <List key={liste.id} tittel={liste.tittel} saveState={liste.state} color={liste.color} buttonColor={liste.buttonColor} />)
+ 
+  return (
+    <div className="app">
+      {varelister}
+    </div>
+  )
 }
 
 export default App;
