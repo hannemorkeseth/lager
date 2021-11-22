@@ -1,13 +1,24 @@
 import React from 'react'
-import lister from './lister'
+//import lister from './lister'
 import List from './List'
+import db from './firebase'
+import { collection, getDocs } from 'firebase/firestore'
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      lister
+     lister: []
     }
+  }
+
+  async componentDidMount() {
+    const listerRef = collection(db, "lister")
+    const data = await getDocs(listerRef)
+    this.setState({lister: data.docs.map(doc => ({
+      ...doc.data(),
+      id: doc.id
+    }))})
   }
 
   render() {
