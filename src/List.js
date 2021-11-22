@@ -2,6 +2,7 @@ import React from "react"
 import ListItem from './ListItem'
 import InputField from './InputField'
 
+
 class List extends React.Component {
   constructor() {
     super()
@@ -20,6 +21,8 @@ class List extends React.Component {
   }
 
   saveStateToLocalStorage(event) {
+
+
     localStorage.setItem(this.props.saveState, JSON.stringify(this.state.data))
     const tittel = this.props.tittel
     alert("Lagret liste: " + tittel)
