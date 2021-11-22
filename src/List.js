@@ -1,7 +1,8 @@
 import React from "react"
 import ListItem from './ListItem'
 import InputField from './InputField'
-
+import db from './firebase'
+import { collection, getDocs, addDoc, doc, deleteDoc, updateDoc } from 'firebase/firestore'
 
 class List extends React.Component {
   constructor() {
@@ -11,8 +12,7 @@ class List extends React.Component {
       inputvalue: '',
       loading: false
     }
-    this.saveStateToLocalStorage = this.saveStateToLocalStorage.bind(this)
-    this.getStateFromLocalStorage = this.getStateFromLocalStorage.bind(this)
+
     this.handlePlusClick = this.handlePlusClick.bind(this)
     this.handleMinusClick = this.handleMinusClick.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
@@ -20,32 +20,22 @@ class List extends React.Component {
     this.addItem = this.addItem.bind(this)
   }
 
-  saveStateToLocalStorage(event) {
-
-
-    localStorage.setItem(this.props.saveState, JSON.stringify(this.state.data))
-    const tittel = this.props.tittel
-    alert("Lagret liste: " + tittel)
-  }
-
-  getStateFromLocalStorage() {
-    this.setState(() => {
-      const data = localStorage.getItem(this.props.saveState)
-      if (data !== null) {
-        return {
-          data: JSON.parse(data),
-          loading: false
-        }
-      }
-    })
-  }
-
-  componentDidMount() {
+  async componentDidMount() {
     this.setState({loading: true})
-    this.getStateFromLocalStorage()
+    const dataRef = collection(db, this.props.saveState)
+    const data = await getDocs(dataRef)
+    this.setState({data: data.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+      }))})
+      this.setState({loading: false})
   }
 
-  handlePlusClick(id) {
+  handlePlusClick(id, antall) {
+    const ref = doc(db, this.props.saveState, id)
+    const increased = {antall: antall + 1}
+    updateDoc(ref, increased)
+
     this.setState(prevState => {
     const newData = prevState.data.map(vare => {
       if (vare.id === id) {
@@ -62,7 +52,11 @@ class List extends React.Component {
      })
   }
 
-  handleMinusClick(id) {
+  async handleMinusClick(id, antall) {
+    const ref = doc(db, this.props.saveState, id)
+    const decreased = {antall: antall - 1}
+    await updateDoc(ref, decreased)
+
     this.setState(prevState => {
     const newData = prevState.data.map(vare => {
       if (vare.id === id) {
@@ -80,6 +74,9 @@ class List extends React.Component {
   }
 
   handleDelete(id) {
+    const ref = doc(db, this.props.saveState, id)
+    deleteDoc(ref)
+
     this.setState(prevState => {
       const filteredData = prevState.data.filter(vare => {
       if (vare.id !== id) {
@@ -102,6 +99,8 @@ class List extends React.Component {
             {vare: item, antall: 1, id: item}]
       })
     )
+    const dataRef = collection(db, this.props.saveState)
+    addDoc(dataRef, {vare: item, antall: 1})
     this.setState({inputvalue: ''})
   }
 
@@ -120,7 +119,6 @@ class List extends React.Component {
         {loading}
         {varer}
         <InputField value={this.state.inputvalue} handleInputChange={this.handleInputChange} addItem={this.addItem} buttonColor={this.props.buttonColor}/>
-        <button onClick={this.saveStateToLocalStorage} className="lagre" style={{backgroundColor: this.props.buttonColor}}>Lagre</button>
       </div>
     )
   }

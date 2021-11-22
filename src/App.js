@@ -19,7 +19,6 @@ class App extends React.Component {
       ...doc.data(),
       id: doc.id
     }))})
-    console.log(this.state);
   }
 
   render() {
