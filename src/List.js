@@ -93,14 +93,14 @@ class List extends React.Component {
     this.setState({inputvalue: value})
   }
 
-  addItem(item) {
+  async addItem(item) {
+    const dataRef = collection(db, this.props.saveState)
+    await addDoc(dataRef, {vare: item, antall: 1})
     this.setState(prevState => ({
       data: [...prevState.data,
             {vare: item, antall: 1, id: item}]
       })
     )
-    const dataRef = collection(db, this.props.saveState)
-    addDoc(dataRef, {vare: item, antall: 1})
     this.setState({inputvalue: ''})
   }
 
