@@ -52,10 +52,10 @@ class List extends React.Component {
      })
   }
 
-  async handleMinusClick(id, antall) {
+  handleMinusClick(id, antall) {
     const ref = doc(db, this.props.saveState, id)
     const decreased = {antall: antall - 1}
-    await updateDoc(ref, decreased)
+    updateDoc(ref, decreased)
 
     this.setState(prevState => {
     const newData = prevState.data.map(vare => {
