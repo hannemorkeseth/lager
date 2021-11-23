@@ -31,10 +31,10 @@ class List extends React.Component {
       this.setState({loading: false})
   }
 
-  handlePlusClick(id, antall) {
+  async handlePlusClick(id, antall) {
     const ref = doc(db, this.props.saveState, id)
     const increased = {antall: antall + 1}
-    updateDoc(ref, increased)
+    await updateDoc(ref, increased)
 
     this.setState(prevState => {
     const newData = prevState.data.map(vare => {
@@ -73,9 +73,9 @@ class List extends React.Component {
      })
   }
 
-  handleDelete(id) {
+  async handleDelete(id) {
     const ref = doc(db, this.props.saveState, id)
-    deleteDoc(ref)
+    await deleteDoc(ref)
 
     this.setState(prevState => {
       const filteredData = prevState.data.filter(vare => {
