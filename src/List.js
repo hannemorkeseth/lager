@@ -2,7 +2,7 @@ import React from "react"
 import ListItem from './ListItem'
 import InputField from './InputField'
 import db from './firebase'
-import { collection, getDocs, addDoc, doc, deleteDoc, updateDoc } from 'firebase/firestore'
+import { collection, getDocs, addDoc, doc, deleteDoc, updateDoc, onSnapshot } from 'firebase/firestore'
 
 class List extends React.Component {
   constructor() {
@@ -20,14 +20,22 @@ class List extends React.Component {
     this.addItem = this.addItem.bind(this)
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.setState({loading: true})
     const dataRef = collection(db, this.props.saveState)
-    const data = await getDocs(dataRef)
-    this.setState({data: data.docs.map(doc => ({
+    const unsubscribe = onSnapshot(dataRef, (snapshot) => {
+      this.setState({data: snapshot.docs.map(doc => ({
         ...doc.data(),
         id: doc.id
-      }))})
+      })) })
+    })
+
+
+  //  const data = await getDocs(dataRef)
+    //this.setState({data: data.docs.map(doc => ({
+      //  ...doc.data(),
+        //id: doc.id
+      //}))})
       this.setState({loading: false})
   }
 
