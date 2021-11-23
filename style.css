@@ -1,0 +1,84 @@
+body {
+  background-image: url("./img/chicken.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-attachment: fixed;
+  min-height: 90vh;
+}
+
+.app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25vw;
+  margin: 1%;
+  margin-top: 5%;
+  padding: 2%;
+
+}
+
+.overskrift {
+  text-align: center;
+}
+
+.list-item-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2% 0;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5% 0;
+}
+
+.text-field {
+  border: thin solid black;
+  border-radius: 5px;
+  width: 55%;
+  margin: 0;
+  background-color: white;
+}
+
+.number {
+  border: thin solid black;
+  border-radius: 1px;
+  margin: 0;
+  width: 5%;
+  text-align: center;
+  background-color: white;
+}
+
+.btn {
+  width: 5%;
+  text-align: center;
+}
+
+.delete-btn {
+  width: 20%;
+  background-color: red;
+}
+
+.input-btn {
+  width: 35%;
+}
+
+.lagre {
+  width: 60%;
+}
+
+@media (max-width: 600px) {
+  .list {
+    width: 90vw;
+  }
+}
