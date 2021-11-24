@@ -2,7 +2,7 @@ import React from "react"
 import ListItem from './ListItem'
 import InputField from './InputField'
 import db from './firebase'
-import { collection, getDocs, addDoc, doc, deleteDoc, updateDoc, onSnapshot } from 'firebase/firestore'
+import { collection, addDoc, doc, deleteDoc, updateDoc, onSnapshot } from 'firebase/firestore'
 
 class List extends React.Component {
   constructor() {
@@ -29,86 +29,33 @@ class List extends React.Component {
         id: doc.id
       })) })
     })
-
-
-  //  const data = await getDocs(dataRef)
-    //this.setState({data: data.docs.map(doc => ({
-      //  ...doc.data(),
-        //id: doc.id
-      //}))})
-      this.setState({loading: false})
+    this.setState({loading: false})
   }
 
-  async handlePlusClick(id, antall) {
+  handlePlusClick(id, antall) {
     const ref = doc(db, this.props.saveState, id)
     const increased = {antall: antall + 1}
-    await updateDoc(ref, increased)
-
-    this.setState(prevState => {
-    const newData = prevState.data.map(vare => {
-      if (vare.id === id) {
-        return {
-          ...vare,
-          antall: vare.antall + 1
-        }
-      }
-        return vare
-      })
-      return {
-        data: newData
-      }
-     })
+    updateDoc(ref, increased)
   }
 
   handleMinusClick(id, antall) {
     const ref = doc(db, this.props.saveState, id)
     const decreased = {antall: antall - 1}
     updateDoc(ref, decreased)
-
-    this.setState(prevState => {
-    const newData = prevState.data.map(vare => {
-      if (vare.id === id) {
-        return {
-          ...vare,
-          antall: vare.antall - 1
-        }
-      }
-        return vare
-      })
-      return {
-        data: newData
-      }
-     })
   }
 
-  async handleDelete(id) {
+  handleDelete(id) {
     const ref = doc(db, this.props.saveState, id)
-    await deleteDoc(ref)
-
-    this.setState(prevState => {
-      const filteredData = prevState.data.filter(vare => {
-      if (vare.id !== id) {
-        return vare
-      }
-      })
-      return {
-        data: filteredData
-      }
-    })
+    deleteDoc(ref)
   }
 
   handleInputChange(value) {
     this.setState({inputvalue: value})
   }
 
-  async addItem(item) {
+  addItem(item) {
     const dataRef = collection(db, this.props.saveState)
-    await addDoc(dataRef, {vare: item, antall: 1})
-    this.setState(prevState => ({
-      data: [...prevState.data,
-            {vare: item, antall: 1, id: item}]
-      })
-    )
+    addDoc(dataRef, {vare: item, antall: 1})
     this.setState({inputvalue: ''})
   }
 
