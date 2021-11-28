@@ -13,11 +13,16 @@ body {
   justify-content: space-around;
 }
 
+.ny-liste {
+  align-self: flex-start;
+  flex-basis: 95%;
+}
+
 .list {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 25vw;
+  width: 30vw;
   margin: 1%;
   margin-top: 5%;
   padding: 2%;
@@ -59,25 +64,11 @@ body {
   background-color: white;
 }
 
-.btn {
-  width: 5%;
-  text-align: center;
-}
-
-.delete-btn {
-  width: 20%;
-  background-color: red;
-}
-
 .input-btn {
   width: 35%;
 }
 
-.lagre {
-  width: 60%;
-}
-
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   .list {
     width: 90vw;
   }
