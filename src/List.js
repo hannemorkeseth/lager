@@ -60,6 +60,8 @@ class List extends React.Component {
   }
 
   render() {
+    const data = this.state.data
+    const sortedVarer = data.sort((a, b) => a.vare.localeCompare(b.vare))
     const varer = this.state.data.map((vare, index) => <ListItem
       key={`${index}`}
       vare={vare}
@@ -67,7 +69,8 @@ class List extends React.Component {
       handleMinusClick={this.handleMinusClick}
       handleDelete={this.handleDelete}
       buttonColor={this.props.buttonColor} />)
-      const loading = this.state.loading ? "Loading..." : null
+
+    const loading = this.state.loading ? "Loading..." : null
     return (
       <div className="list" style={{backgroundColor: this.props.color}}>
         <h1 className="overskrift">{this.props.tittel}</h1>
