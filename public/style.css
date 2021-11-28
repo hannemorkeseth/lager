@@ -15,7 +15,7 @@ body {
 
 .ny-liste {
   align-self: flex-start;
-  flex-basis: 95%;
+  width: 95%;
 }
 
 .list {
