@@ -73,7 +73,10 @@ class List extends React.Component {
     const loading = this.state.loading ? "Loading..." : null
     return (
       <div className="list" style={{backgroundColor: this.props.color}}>
-        <h1 className="overskrift">{this.props.tittel}</h1>
+        <div className="overskrift-wrapper">
+          <h1 className="overskrift">{this.props.tittel}</h1>
+          <button className="slett-liste" onClick = {() => {this.props.slettListe(this.props.listeId, this.props.tittel)}}>X</button>
+        </div>
         {loading}
         {varer}
         <InputField value={this.state.inputvalue} handleInputChange={this.handleInputChange} addItem={this.addItem} buttonColor={this.props.buttonColor}/>
