@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/lager/static/js/main.dac22700.chunk.js",
-    "main.js.map": "/lager/static/js/main.dac22700.chunk.js.map",
+    "main.js": "/lager/static/js/main.dedce04b.chunk.js",
+    "main.js.map": "/lager/static/js/main.dedce04b.chunk.js.map",
     "runtime-main.js": "/lager/static/js/runtime-main.76a920eb.js",
     "runtime-main.js.map": "/lager/static/js/runtime-main.76a920eb.js.map",
-    "static/js/2.17b90bfb.chunk.js": "/lager/static/js/2.17b90bfb.chunk.js",
-    "static/js/2.17b90bfb.chunk.js.map": "/lager/static/js/2.17b90bfb.chunk.js.map",
+    "static/js/2.0c7497ef.chunk.js": "/lager/static/js/2.0c7497ef.chunk.js",
+    "static/js/2.0c7497ef.chunk.js.map": "/lager/static/js/2.0c7497ef.chunk.js.map",
     "index.html": "/lager/index.html",
-    "static/js/2.17b90bfb.chunk.js.LICENSE.txt": "/lager/static/js/2.17b90bfb.chunk.js.LICENSE.txt"
+    "static/js/2.0c7497ef.chunk.js.LICENSE.txt": "/lager/static/js/2.0c7497ef.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.76a920eb.js",
-    "static/js/2.17b90bfb.chunk.js",
-    "static/js/main.dac22700.chunk.js"
+    "static/js/2.0c7497ef.chunk.js",
+    "static/js/main.dedce04b.chunk.js"
   ]
 }

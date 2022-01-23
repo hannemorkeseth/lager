@@ -29,8 +29,20 @@ body {
 
 }
 
+.overskrift-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .overskrift {
   text-align: center;
+}
+
+.slett-liste {
+  height: 50%;
+
 }
 
 .list-item-container {
@@ -73,3 +85,4 @@ body {
     width: 90vw;
   }
 }
+
